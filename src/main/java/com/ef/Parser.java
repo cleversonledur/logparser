@@ -40,6 +40,6 @@ import com.ef.utils.OptionParser;
             logEntryService.addLogEntryList(log);
         }
 
-        System.out.println("ok");
+        OptionParser.validate(accessLogParameter, durationParameter, startDateParameter, thresholdParameter);
     }
 }
