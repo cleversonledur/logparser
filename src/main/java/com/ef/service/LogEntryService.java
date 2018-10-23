@@ -41,7 +41,7 @@ import com.ef.utils.LogEntryValidator;
         List<LogEntryIPCount> countResult = logEntryRepository.getLogEntriesByIpAndDateTime(startDateTime, endDateTime);
 
         countResult.stream().filter(ip -> ip.getCount() >= threshold).peek(ip -> {
-            //Print
+            System.out.println(ip.getIp() + ' ' + ip.getCount());
             //Persist
         });
 

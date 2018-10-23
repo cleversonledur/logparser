@@ -21,7 +21,7 @@ import com.ef.utils.OptionParser;
 
     public LogEntry(String[] entryParts) {
 
-        this.date = OptionParser.parseDateParameter(entryParts[0]);
+        this.date = OptionParser.parseDateFromDataLog(entryParts[0]);
         this.ip = entryParts[1];
         this.request = entryParts[2];
         this.status = entryParts[3];

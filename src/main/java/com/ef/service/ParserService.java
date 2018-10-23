@@ -32,8 +32,8 @@ import com.ef.utils.OptionParser;
             logEntryService.addLogEntryList(log);
         }
 
-        logEntryService.getCounter(OptionParser.parseDateParameter(startDateParameter), DurationType.valueOf(durationParameter),
-                        Integer.valueOf(thresholdParameter));
+        logEntryService.getLogEntriesByIpAndDateTime(OptionParser.parseDateParameter(startDateParameter),
+                        DurationType.getByName(durationParameter), Integer.valueOf(thresholdParameter));
 
     }
 }

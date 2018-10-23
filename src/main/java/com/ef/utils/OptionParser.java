@@ -41,8 +41,14 @@ public class OptionParser {
         }
     }
 
-    public static LocalDateTime parseDateParameter(String dateTime) {
+    public static LocalDateTime parseDateFromDataLog(String dateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+
+        return LocalDateTime.parse(dateTime, formatter);
+    }
+
+    public static LocalDateTime parseDateParameter(String dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd.HH:mm:ss");
 
         return LocalDateTime.parse(dateTime, formatter);
     }

@@ -16,4 +16,14 @@ public enum DurationType {
     public void setType(String type) {
         this.type = type;
     }
+
+    public static DurationType getByName(String name) {
+        for (DurationType duration : values()) {
+            if (duration.getType().equals(name)) {
+                return duration;
+            }
+        }
+
+        throw new IllegalArgumentException(name + " is not a valid duration");
+    }
 }
