@@ -3,10 +3,10 @@ package com.ef.domain.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import java.time.LocalDateTime;
-
-import org.springframework.data.annotation.Id;
+import java.time.format.DateTimeFormatter;
 
 @Entity public class LogEntry {
 
@@ -19,7 +19,9 @@ import org.springframework.data.annotation.Id;
     private String userAgent;
 
     public LogEntry(String[] entryParts) {
-        this.date = LocalDateTime.parse(entryParts[0]);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+
+        this.date = LocalDateTime.parse(entryParts[0], formatter);
         this.ip = entryParts[1];
         this.request = entryParts[2];
         this.status = entryParts[3];
