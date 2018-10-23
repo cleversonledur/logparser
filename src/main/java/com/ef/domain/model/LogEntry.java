@@ -6,7 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import com.ef.utils.OptionParser;
 
 @Entity public class LogEntry {
 
@@ -19,9 +20,8 @@ import java.time.format.DateTimeFormatter;
     private String userAgent;
 
     public LogEntry(String[] entryParts) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 
-        this.date = LocalDateTime.parse(entryParts[0], formatter);
+        this.date = OptionParser.parseDateParameter(entryParts[0]);
         this.ip = entryParts[1];
         this.request = entryParts[2];
         this.status = entryParts[3];

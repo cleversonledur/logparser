@@ -1,5 +1,7 @@
 package com.ef.utils;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,5 +39,11 @@ public class OptionParser {
             throw new Exception("The threshold information is required to retrieve log information.\n"
                             + "Inform the threshold value with 200 or 500 values. \n" + "Ex: --threshold=200");
         }
+    }
+
+    public static LocalDateTime parseDateParameter(String dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+
+        return LocalDateTime.parse(dateTime, formatter);
     }
 }
