@@ -8,7 +8,7 @@ import org.springframework.util.StringUtils;
 public class OptionParser {
 
     public static String ACCESS_LOG_PARAMETER = "--accesslog";
-    public static String START_DATE_PARAMETER = "--atartDate";
+    public static String START_DATE_PARAMETER = "--startDate";
     public static String DURATION_PARAMETER = "--duration";
     public static String THRESHOLD_PARAMETER = "--threshold";
 
