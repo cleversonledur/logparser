@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ef.domain.model.LogEntry;
 
-@Repository public interface LogEntryRepository extends CrudRepository<LogEntry, Integer> {
+@Repository public interface LogEntryRepository extends CrudRepository<LogEntry, Integer>, LogEntryRepositoryCustom {
 
     List<LogEntry> findByStatus(String status);
 }
