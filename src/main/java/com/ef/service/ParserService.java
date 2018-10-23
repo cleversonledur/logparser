@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.ef.domain.enumerator.DurationType;
 import com.ef.domain.model.LogEntry;
 import com.ef.utils.LogParser;
 import com.ef.utils.OptionParser;
@@ -30,6 +31,9 @@ import com.ef.utils.OptionParser;
             List<LogEntry> log = LogParser.parseLog(accessLogParameter);
             logEntryService.addLogEntryList(log);
         }
+
+        logEntryService.getCounter(OptionParser.parseDateParameter(startDateParameter), DurationType.valueOf(durationParameter),
+                        Integer.valueOf(thresholdParameter));
 
     }
 }
