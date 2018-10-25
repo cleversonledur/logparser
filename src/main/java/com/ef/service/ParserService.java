@@ -27,13 +27,21 @@ import com.ef.utils.OptionParser;
 
         OptionParser.validate(accessLogParameter, durationParameter, startDateParameter, thresholdParameter);
 
+        persistDataLogToDatabase(accessLogParameter);
+
+        processQueries(durationParameter, startDateParameter, thresholdParameter);
+
+    }
+
+    private void processQueries(String durationParameter, String startDateParameter, String thresholdParameter) {
+        logEntryService.getLogEntriesByIpAndDateTime(OptionParser.parseDateParameter(startDateParameter),
+                        DurationType.getByName(durationParameter), Integer.valueOf(thresholdParameter));
+    }
+
+    private void persistDataLogToDatabase(String accessLogParameter) throws Exception {
         if (!StringUtils.isEmpty(accessLogParameter)) {
             List<LogEntry> log = LogParser.parseLog(accessLogParameter);
             logEntryService.addLogEntryList(log);
         }
-
-        logEntryService.getLogEntriesByIpAndDateTime(OptionParser.parseDateParameter(startDateParameter),
-                        DurationType.getByName(durationParameter), Integer.valueOf(thresholdParameter));
-
     }
 }

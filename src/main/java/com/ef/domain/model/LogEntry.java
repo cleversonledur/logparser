@@ -29,6 +29,9 @@ import com.ef.utils.converter.LocalDateAttributeConverter;
         this.userAgent = entryParts[4];
     }
 
+    public LogEntry() {
+    }
+
     public Integer getId() {
         return id;
     }
