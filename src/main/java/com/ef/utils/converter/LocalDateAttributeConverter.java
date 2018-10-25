@@ -3,18 +3,18 @@ package com.ef.utils.converter;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
-@Converter(autoApply = true) public class LocalDateAttributeConverter implements AttributeConverter<LocalDate, Date> {
+@Converter(autoApply = true) public class LocalDateAttributeConverter implements AttributeConverter<LocalDateTime, Timestamp> {
 
     @Override
-    public Date convertToDatabaseColumn(LocalDate locDate) {
-        return (locDate == null ? null : Date.valueOf(locDate));
+    public Timestamp convertToDatabaseColumn(LocalDateTime locDateTime) {
+        return (locDateTime == null ? null : Timestamp.valueOf(locDateTime));
     }
 
     @Override
-    public LocalDate convertToEntityAttribute(Date sqlDate) {
-        return (sqlDate == null ? null : sqlDate.toLocalDate());
+    public LocalDateTime convertToEntityAttribute(Timestamp sqlDateTime) {
+        return (sqlDateTime == null ? null : sqlDateTime.toLocalDateTime());
     }
 }

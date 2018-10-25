@@ -1,5 +1,6 @@
 package com.ef.domain.model;
 
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,12 +9,12 @@ import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 import com.ef.utils.OptionParser;
+import com.ef.utils.converter.LocalDateAttributeConverter;
 
 @Entity public class LogEntry {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO) private Integer id;
-
-    private LocalDateTime date;
+    @Convert(converter = LocalDateAttributeConverter.class) private LocalDateTime date;
     private String ip;
     private String request;
     private String status;
