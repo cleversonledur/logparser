@@ -53,27 +53,27 @@ import com.ef.utils.LogEntryValidator;
         return endDateTime;
     }
 
-    private void logAndPersistBlockedIps(LocalDateTime startDateTime, Integer threshold, List<LogEntryIPCount> countResult,
-                    LocalDateTime end) {
+    private void logAndPersistBlockedIps(LocalDateTime start, Integer threshold, List<LogEntryIPCount> countResult, LocalDateTime end) {
         for (LogEntryIPCount ip : countResult) {
             if (ip.getCount() >= threshold.longValue()) {
 
-                logBlockedIp(ip);
+                logBlockedIp(ip, start, end);
 
-                persistBlockedIp(startDateTime, end, ip);
+                persistBlockedIp(start, end, ip);
             }
         }
     }
 
-    private void logBlockedIp(LogEntryIPCount ip) {
-        System.out.println(ip.getIp() + ' ' + ip.getCount());
+    private void logBlockedIp(LogEntryIPCount ip, LocalDateTime start, LocalDateTime end) {
+
+        System.out.println("---> The ip " + ip.getIp() + " is blocked because this made " + ip.getCount() + " request between " + start
+                        + " and " + end + ".");
     }
 
-    private void persistBlockedIp(LocalDateTime startDateTime, LocalDateTime end, LogEntryIPCount ip) {
+    private void persistBlockedIp(LocalDateTime start, LocalDateTime end, LogEntryIPCount ip) {
         BlockedIp blockedIp = new BlockedIp();
         blockedIp.setIp(ip.getIp());
-        blockedIp.setReason("This ip is blocked because this made " + ip.getCount() + " request between " + startDateTime + " and " + end
-                        + ".");
+        blockedIp.setReason("This ip is blocked because this made " + ip.getCount() + " request between " + start + " and " + end + ".");
         blockedIp.setRequests(ip.getCount());
         blockedIpRepository.save(blockedIp);
     }
